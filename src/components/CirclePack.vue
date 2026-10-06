@@ -1,5 +1,9 @@
 <template>
   <div class="circle-pack-wrap">
+    
+    <div class="rootlabel plant" v-if="facet == 'plant'">Plants</div>
+    <div class="rootlabel bee" v-if="facet == 'bee'">Bees</div>
+    
     <div class="svg-container">
       <svg :viewBox="`0 0 ${width} ${height}`" class="bubble-chart">
         <!-- Render each bubble group -->
@@ -200,7 +204,25 @@ export default {
 .circle-pack-wrap {
   display: inline-block;
   margin: 0 0.5rem;
+  height:100%;
+  position:relative;
 }
+
+.rootlabel{
+  position:absolute;
+  font-family: 'EB Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 2.25rem;
+  opacity:0.8;
+  padding:1.5rem;
+  color:#bbb9a4;
+}
+.rootlabel.plant{
+  right:0;
+  bottom:0;
+}
+
 
 .svg-container {
   /* Scales with the viewport while in two-column layout */
@@ -241,6 +263,10 @@ export default {
   /* for mobile phone widths, bump up the cpack size right to the edge */
   .svg-container{
     width: 100vw;
+  }
+
+  .rootlabel{
+    padding: 0rem 0.5rem;
   }
 }
 
