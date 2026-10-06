@@ -137,7 +137,7 @@
 
   <p>The plants here are identified using <a href="https://imageomics.github.io/bioclip-2/" target="_blank">BioCLIP 2</a>, a specialised machine-learning model. While the model is highly capable, this experiment also revealed some of its quirks. </p>
 
-  <p>While we can filter BioCLIP's classifications to focus on plants, BioCLIP can't "unsee" the  bee that's also in the image. This visual information interferes with the plant classification. Redacting the bee by blurring it out helps with this, improving the accuracy of the identification as shown below. To process all 13,000 images in the source data a second vision model, <a href="https://github.com/agentmorris/MegaDetector" target="_blank">Megadetector</a>, is used to identify the bee within the frame and blur that area, before passing it to BioCLIP.</p>
+  <p>While we can filter BioCLIP's classifications to focus on plants, BioCLIP cannot "unsee" the  bee that's also in the image. This visual information interferes with the plant classification. Redacting the bee by blurring it out helps with this, improving the accuracy of the identification as shown below. To process all 13,000 images in the source data a second vision model, <a href="https://github.com/agentmorris/MegaDetector" target="_blank">Megadetector</a>, is used to identify the bee within the frame and blur that area, before passing it to BioCLIP.</p>
 
   <div class="figure-block">
 	<figure class="about-figure">
@@ -682,8 +682,8 @@ ul.items{
  		/* position: sticky; */
  		top: 0;
  		/* z-index: 5; */
- 		background-color: rgb(244,244,241);
- 		padding: 0.5rem 0;
+ 		/* background-color: rgb(244,244,241);
+ 		padding: 0.5rem 0; */
 		margin-bottom: 1rem;
  	}
  }

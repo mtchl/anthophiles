@@ -1,5 +1,5 @@
 <template>
-	<div class="wrap">
+	<div class="wrap" :class="{current: isCurrent}">
 		<div class="img-container">
 			<img loading="lazy" :src="'https://storage.googleapis.com/seh-bees/images/'+obs.imageID+'.jpg'">
 		</div>
@@ -32,7 +32,7 @@
 	export default {
 
 	  name: 'FocusConnection',
-	  props: ['obs'],
+	  props: ['obs','isCurrent'],
 	  components: { FilterChip },
 	  emits: ['set-filter'],
 
@@ -91,7 +91,12 @@
 		background-color: white;
 		border-radius: 0.5rem;
 		border: 1px solid rgba(80,80,80,0.2);
+		opacity:0.4;
+		transition: opacity 0.5s;
+	}
 
+	.wrap.current{
+		opacity:1.0;
 	}
 
 	.wrap .img-container{

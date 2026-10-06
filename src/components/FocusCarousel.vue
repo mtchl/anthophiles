@@ -12,7 +12,7 @@
 					:key="item.occurrenceID || i"
 					:ref="el => setSlideRef(el, i)"
 				>
-					<ObsCard :obs="item" @set-filter="(...args) => $emit('set-filter', ...args)" />
+					<ObsCard :obs="item" :is-current="activeIndex == i" @set-filter="(...args) => $emit('set-filter', ...args)" />
 				</div>
 
 				<div class="carousel__spacer" v-if="items.length > 1" aria-hidden="true"></div>
@@ -126,6 +126,9 @@
 		position:relative;
 		margin: 0 auto;
 		width: 100%;
+		background-color: #bbb9a44f;
+		border-left: 1px solid #bbb9a44f;
+		border-right: 1px solid #bbb9a44f;
 	}
 
 	.carousel__viewport{
@@ -139,7 +142,7 @@
 	}
 
 	/* Gradient overlay blending the peeking side cards into the page background */
-	.carousel::after{
+	/* .carousel::after{
 		content: "";
 		position: absolute;
 		z-index:2;
@@ -157,7 +160,7 @@
 			rgba(244,244,241,0) 90%,
 			rgb(244,244,241,120) 100%
 		);
-	}
+	} */
 
 	/* hide scrollbar */
 	.carousel__viewport{
@@ -180,6 +183,7 @@
 		scroll-snap-align: center;
 		box-sizing: border-box;
 		padding: 0 0.5rem;
+		margin: 0.5rem 0;
 	}
 
 	.carousel__slide.single{
