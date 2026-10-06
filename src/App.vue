@@ -181,7 +181,7 @@
 
 </template>
 
-<script>x
+<script>
 	  import CirclePack from './components/CirclePack.vue'
 	  import FocusCarousel from './components/FocusCarousel.vue'
 	  import FilterChip from './components/FilterChip.vue'
