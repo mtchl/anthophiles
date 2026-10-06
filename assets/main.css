@@ -11,7 +11,31 @@ body{
 	margin:1rem;
 	/* background-color: rgb(244,244,241); */
 
-	background: linear-gradient(0deg, #f4f4f1, #ddddce)
+	background: linear-gradient(0deg, #f4f4f1, #ddddce);
+	min-height: 1200px;
+}
+
+/* #app is hidden while the data loads and the interface builds,
+   then faded in (see reveal() in src/main.js) */
+#app{
+	opacity: 0;
+	transition: opacity 0.6s ease;
+}
+
+#app.ready{
+	opacity: 1;
+}
+
+#app.error{
+	text-align: center;
+	font-family: 'Noto Sans', sans-serif;
+	color: #444;
+}
+
+@media (prefers-reduced-motion: reduce){
+	#app{
+		transition: none;
+	}
 }
 
 a, a:visited, a:active{

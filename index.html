@@ -5,9 +5,43 @@
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anthophiles: An experiment in joined-up biodiversity data | Mitchell Whitelaw</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Self-hosted variable fonts (latin subset), see /public/fonts. Preload only the faces used above the fold. -->
+    <link rel="preload" href="/fonts/eb-garamond-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/eb-garamond-latin-wght-italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/noto-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Start fetching the dataset in parallel with the JS bundle -->
+    <link rel="preload" href="/data/detections-genus-annotated.json" as="fetch" crossorigin>
+    <!-- Inline so the fonts are discovered during first parse, not after the CSS bundle -->
+    <style>
+      @font-face{
+        font-family: 'EB Garamond';
+        font-style: normal;
+        font-weight: 400 800;
+        font-display: swap;
+        src: url('/fonts/eb-garamond-latin-wght-normal.woff2') format('woff2');
+      }
+      @font-face{
+        font-family: 'EB Garamond';
+        font-style: italic;
+        font-weight: 400 800;
+        font-display: swap;
+        src: url('/fonts/eb-garamond-latin-wght-italic.woff2') format('woff2');
+      }
+      @font-face{
+        font-family: 'Noto Sans';
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+        src: url('/fonts/noto-sans-latin-wght-normal.woff2') format('woff2');
+      }
+      @font-face{
+        font-family: 'Noto Sans';
+        font-style: italic;
+        font-weight: 100 900;
+        font-display: swap;
+        src: url('/fonts/noto-sans-latin-wght-italic.woff2') format('woff2');
+      }
+    </style>
   </head>
   <body>
 <header>

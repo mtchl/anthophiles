@@ -1,8 +1,6 @@
 
 
 <script setup>
-  import { ref } from 'vue'
-  import sourceData from '../assets/data/detections-genus-annotated.json'  
 </script>
 
 
@@ -124,7 +122,7 @@
 
   <p>The occurrence data collected on big citizen science platforms and aggregators documents the presence of an organism in space and time, often using an image. But these images might also record other information. For example, many observations of bees also show the plants the bees are resting on, feeding on or pollinating; these bee-plant connections are important, but they are rarely recorded in structured data.</p> 
   
-  <p><em>Anthophiles</em> experiments with automated classification to identify plants in thousands of bee observations from south-eastern Austalia. This experiment suggests ML might help build a more joined-up view of the living world; it also suggests reasons for caution, as automation plays an increasing role in citizen science and biodiversity data systems.</p>
+  <p><em>Anthophiles</em> uses automated classification to identify plants in thousands of bee observations from south-eastern Austalia &mdash; a kind of ecological data-mining. This experiment suggests machine learning might help build a more joined-up view of the living world; it also suggests reasons for caution, as automation plays an increasing role in citizen science and biodiversity data systems.</p>
     
   <h3>Patterns of connection</h3>
    
@@ -141,12 +139,12 @@
 
   <div class="figure-block">
 	<figure class="about-figure">
-		<img src="/assets/img/Exoneura-Rubus-orig.jpg">
+		<img src="/assets/img/Exoneura-Rubus-orig.jpg" loading="lazy" decoding="async">
 		<figcaption>Unblurred: plant ID <em>Daviesia</em> (0.1)</figcaption>
 	</figure>
 
 		<figure class="about-figure">
-		<img src="/assets/img/Exoneura-Rubus-blurred.jpg">
+		<img src="/assets/img/Exoneura-Rubus-blurred.jpg" loading="lazy" decoding="async">
 		<figcaption>Blurred: plant ID <em>Rubus</em> (0.9)</figcaption>
 	</figure>
   </div>
@@ -155,12 +153,12 @@
 
   <div class="figure-block">
 	 <figure class="about-figure">
-		<img src="/assets/img/stelis-falseID-example.jpg">
+		<img src="/assets/img/stelis-falseID-example.jpg" loading="lazy" decoding="async">
 		<figcaption>Plant ID <em>Stelis</em> (0.7)</figcaption>
 	</figure>
 
 	<figure class="about-figure">
-		<img src="/assets/img/tetradium-falseID-example.jpg">
+		<img src="/assets/img/tetradium-falseID-example.jpg" loading="lazy" decoding="async">
 		<figcaption>Plant ID <em>Tetradium</em> (0.5)</figcaption>
 	</figure>
   </div>
@@ -197,9 +195,16 @@ export default {
   	CirclePack, FocusCarousel, FilterChip, CarouselPagination
   },
 
+  // Observation records, fetched in src/main.js before the app is created
+  props: {
+  	items: {
+  		type: Array,
+  		default: () => []
+  	}
+  },
+
   data () {
     return {
-    	items:sourceData,
     	filter: {bee:null, plant:null},
     	minScore:0.4,
     	// Focus is tracked by the observation's stable occurrenceID 
@@ -210,15 +215,21 @@ export default {
     }
   },
 
-  mounted(){
-  	this._replaceURLState = debouncedReplaceURLState();
-
+  // Resolve the initial state before the first render so the interface is
+  // built once, in its final state (no re-render / carousel jump on mount).
+  created(){
   	if (!this.applyStateFromURL()) {
   		let r = this.pickConnection()
-  		this.filter.bee = r.genus;
-  		this.filter.plant = r.plantDetections[0].genus;
-  		this.focusedOccurrenceID = r.occurrenceID;
+  		if (r) {
+  			this.filter.bee = r.genus;
+  			this.filter.plant = r.plantDetections[0].genus;
+  			this.focusedOccurrenceID = r.occurrenceID;
+  		}
   	}
+  },
+
+  mounted(){
+  	this._replaceURLState = debouncedReplaceURLState();
 
   	this.urlStateReady = true;
   	// Write the resolved initial state (random pick or URL-derived) back
@@ -242,7 +253,6 @@ export default {
   		
   		// new data structure
   		let sourceItems = this.items.filter(i => i.genus != "" && i.hasPlant && i.plantDetection.score > this.minScore)
-  		console.log(sourceItems.length + " items over " + this.minScore)
   		return sourceItems;
   	},
 
@@ -289,7 +299,7 @@ export default {
   		let filtered = this.matches;
   		if (this.filter.bee) filtered = this.matches.filter(i => i.genus == this.filter.bee)
   		if (this.filter.plant) filtered = filtered.filter(i => i.plantDetections[0].genus == this.filter.plant)
-  		let items = filtered.sort((a,b) => a.plantDetections[0].score - b.plantDetections[0].score);
+  		let items = [...filtered].sort((a,b) => a.plantDetections[0].score - b.plantDetections[0].score);
   	  //items.forEach(i => console.log(i.localPath))
   	  return items;
   	},
@@ -525,10 +535,6 @@ export default {
 
 	.about :deep(a.deep-link.plant, a.deep-link.plant:hover){
 		color: var(--color-plant);
-	}
-
-	h1.main-title{
-		font-family: 'Cormorant', sans-serif;
 	}
 
 h4{
