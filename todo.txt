@@ -1,8 +1,0 @@
-TODO
-
-- fix data pipeline - redundant plant detection field / structure
-- code repo with technical docs
-
-
-
-	

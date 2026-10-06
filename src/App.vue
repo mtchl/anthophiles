@@ -299,9 +299,10 @@ export default {
   		let filtered = this.matches;
   		if (this.filter.bee) filtered = this.matches.filter(i => i.genus == this.filter.bee)
   		if (this.filter.plant) filtered = filtered.filter(i => i.plantDetections[0].genus == this.filter.plant)
-  		let items = [...filtered].sort((a,b) => a.plantDetections[0].score - b.plantDetections[0].score);
+		return filtered.sort((a,b) => b.eventDate.localeCompare(a.eventDate));
+  		//let items = [...filtered].sort((a,b) => a.plantDetections[0].score - b.plantDetections[0].score);
   	  //items.forEach(i => console.log(i.localPath))
-  	  return items;
+  	  //return items;
   	},
 
   	plantStats(){
