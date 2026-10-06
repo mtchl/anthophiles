@@ -21,7 +21,7 @@
 			<span v-if="obs.eventDate">{{obsDate}}</span>
 		</p>
 
-		<p>Data source: {{obs.dataResourceName}}; Full record:  <a v-if="obs.occurrenceID" :href="'https://biocache.ala.org.au/occurrences/'+obs.occurrenceID" target="_blank">ALA</a></p>
+		<p>Source: {{obs.dataResourceName}}; Data: <a v-if="obs.occurrenceID" :href="'https://biocache.ala.org.au/occurrences/'+obs.occurrenceID" target="_blank">ALA</a></p>
 	</div>
 </template>
 

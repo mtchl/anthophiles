@@ -553,32 +553,6 @@ ul.items{
  	background-color: #eee;
  }
 
- /* .item{
- 	list-style: none;
- 	display: inline-block;
- 	width:240px;
- 	margin:0.5rem;
- 	padding:1.5rem;
- 	background-color: #eaeae0;
- }
-
-  .item .metadata {
-  	font-weight: 300;
-  	font-size:80%;
-  }
-
-  .metadata p{
-  	margin:0.5rem 0;
-  }
-
- .item img{
- 	width:100%;
- 	aspect-ratio: 1;
- 	object-fit: cover;
- 	display: block;
- 	margin:0 auto;
- } */
-
  .beeFilter.active{
  	background-color: lightcoral;
  }
