@@ -237,6 +237,13 @@ export default {
   }
 }
 
+@media (max-width: 425px){
+  /* for mobile phone widths, bump up the cpack size right to the edge */
+  .svg-container{
+    width: 100vw;
+  }
+}
+
 .bubble-node {
   cursor: pointer;
   transition: opacity 0.5s;

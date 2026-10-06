@@ -1,6 +1,6 @@
 <template>
 	<span class="filterChip"
-		:class="[facet, { inline: inline }]"
+		:class="[facet, { inline: inline, 'closable':closable }]"
 		@click="onClick">
 	{{value}}
 		<button v-if="closable"
@@ -50,10 +50,15 @@
 		color:white;
 		font-style: italic;
 		font-weight:400;
-		padding:0.4rem 0.5rem 0.4rem 0.6rem;
-		clip-path: polygon(5px 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
+		font-size:1rem;
+		padding:0.4em 0.6em 0.4em 0.6em;
+		clip-path: polygon(0.4em 0, 100% 0, calc(100% - 0.4em) 100%, 0 100%);
 		display: inline-block;
 
+	}
+
+	.filterChip.closable{
+		padding-right:0.4em;
 	}
 
 	.score{
@@ -84,6 +89,7 @@
 		padding: 0rem 0.5rem 0rem 0.4rem;
 		color: black;
 		font-weight: 400;
+		font-size: unset;
 		cursor: pointer;
 		display: inline-block;
 		line-height: 1.6em;
@@ -109,17 +115,17 @@
 		background: none;
 		border: none;
 		cursor: pointer;
-		padding: 0 0 0 0.25rem;
-		font-size: 20px; /* Adjust size of the 'X' */
+		padding: 0;
+		font-size: 1.3em; /* Adjust size of the 'X' */
 		line-height: 0;
 		position:relative;
-		top:0.125rem;
+		top:-0.2em;
 	}
 
 	/* Insert the X symbol using the 'times' ISO code */
 	.close-unicode::after {
 		content: "\00d7"; /* Unicode character for × */
-		color: black;
+		color: white;
 		opacity: 0.6;
 	}
 
@@ -127,5 +133,13 @@
 	.close-unicode:hover::after {
 		opacity:1.0;
 	}
+
+	 @media (max-width: 768px){
+
+		.filterChip{
+			font-size:0.9rem;
+		}
+
+	 }
 
 </style>
