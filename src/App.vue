@@ -182,7 +182,6 @@
 </template>
 
 <script>
-	  import FacetList from './components/FacetList.vue'
 	  import CirclePack from './components/CirclePack.vue'
 	  import FocusCarousel from './components/FocusCarousel.vue'
 	  import FilterChip from './components/FilterChip.vue'

@@ -118,6 +118,10 @@ header{
 		font-size:0.8rem;
 	}
 
+	.about p, .intro p{
+		font-size: 19px;
+	}
+
 	
 }
 
