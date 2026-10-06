@@ -181,7 +181,7 @@
 
 </template>
 
-<script>
+<script>x
 	  import CirclePack from './components/CirclePack.vue'
 	  import FocusCarousel from './components/FocusCarousel.vue'
 	  import FilterChip from './components/FilterChip.vue'
@@ -194,7 +194,7 @@ export default {
   name: 'App',
 
   components:{ 
-  	FacetList, CirclePack, FocusCarousel, FilterChip, CarouselPagination
+  	CirclePack, FocusCarousel, FilterChip, CarouselPagination
   },
 
   data () {
