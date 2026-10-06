@@ -49,7 +49,7 @@ export default {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.3rem;
-		background-color: #939393;
+		background-color: #bbb9a4;
 		color: #ffffff;
 		border-radius: 999px;
 		padding: 0.3rem 0.3rem;
@@ -58,7 +58,7 @@ export default {
 
 	.carousel-pagination__count{
 		font-size: 75%;
-		font-weight: 300;
+		font-weight: 400;
 		color: #ffffff;
 		white-space: nowrap;
 	}
