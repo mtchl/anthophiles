@@ -10,7 +10,7 @@
     <link rel="preload" href="/fonts/eb-garamond-latin-wght-italic.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/noto-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
     <!-- Start fetching the dataset in parallel with the JS bundle -->
-    <link rel="preload" href="/data/detections-genus-annotated.json" as="fetch" crossorigin>
+    <link rel="preload" href="/data/detections-ui.json" as="fetch" crossorigin>
     <!-- Inline so the fonts are discovered during first parse, not after the CSS bundle -->
     <style>
       @font-face{
@@ -56,10 +56,12 @@
   </p>
 </section>
 
-    <div id="app"></div>
+<div id="app"></div>
 
-
-
-    <script type="module" src="/src/main.js"></script>
+<footer>
+  <p>Anthophiles v 1.0, October 2026 by <a href="https://mtchl.net">Mitchell Whitelaw</a></p>
+</footer>
+  
+ <script type="module" src="/src/main.js"></script>
   </body>
 </html>

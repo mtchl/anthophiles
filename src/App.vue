@@ -222,7 +222,7 @@ export default {
   		let r = this.pickConnection()
   		if (r) {
   			this.filter.bee = r.genus;
-  			this.filter.plant = r.plantDetections.genus;
+  			this.filter.plant = r.plantDetection.genus;
   			this.focusedOccurrenceID = r.occurrenceID;
   		}
   	}
@@ -626,6 +626,7 @@ ul.items{
  	.carousel-slot{
  		order: 3;
  		display: block;
+		overflow-x:hidden;
  	}
 
  	.desktop-pagination{
@@ -742,4 +743,3 @@ ul.items{
 
 </style>
 
-<!--Taraxacum  https://id.biodiversity.org.au/taxon/apni/51748197 -->
