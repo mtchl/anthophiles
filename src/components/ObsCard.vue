@@ -12,7 +12,7 @@
 			
 
 			<span class="plantChip">
-				<FilterChip facet="plant" inline :score="(obs.plantDetections[0].score).toFixed(2)" :value="obs.plantDetections[0].genus"  @select="$emit('set-filter', 'plant', obs.plantDetections[0].genus)"/>
+				<FilterChip facet="plant" inline :score="(obs.plantDetection.score).toFixed(2)" :value="obs.plantDetection.genus"  @select="$emit('set-filter', 'plant', obs.plantDetection.genus)"/>
 			</span>
 		</div>
 		

@@ -167,9 +167,9 @@
 
  <h3>Data and code</h3>   
     
- <p>Annotated occurrence data is available here.</p>
+ <p>Annotated occurrence data is available as <a href="https://raw.githubusercontent.com/mtchl/mining-bee-plant-interactions/refs/heads/master/seh-bees/seh-bees-plants.json?token=GHSAT0AAAAAAEKFN6QVFZGJQUKGI2IBWETG2WF4YGQ" target="_blank">JSON</a> or <a href="https://raw.githubusercontent.com/mtchl/mining-bee-plant-interactions/refs/heads/master/seh-bees/seh-bees-plants.csv?token=GHSAT0AAAAAAEKFN6QUAERGW772LWFPJIPS2WF4ZXQ">CSV</a>.</p>
 
- <p>For source code and more detailed documentation on the classification and annotation workflow, see the <a href="">GitHub repository</a>.</p>
+ <p>Source code and detailed technical documentation is available on <a href="https://github.com/mtchl/mining-bee-plant-interactions" target="_blank">GitHub</a>.</p>
 
   
 
@@ -222,7 +222,7 @@ export default {
   		let r = this.pickConnection()
   		if (r) {
   			this.filter.bee = r.genus;
-  			this.filter.plant = r.plantDetections[0].genus;
+  			this.filter.plant = r.plantDetections.genus;
   			this.focusedOccurrenceID = r.occurrenceID;
   		}
   	}
@@ -248,10 +248,6 @@ export default {
   computed:{
 
   	matches(){
-  		// original data structure
-  		// let sourceItems = this.items.filter(i => i.plantDetections[0].score > this.minScore)
-  		
-  		// new data structure
   		let sourceItems = this.items.filter(i => i.genus != "" && i.hasPlant && i.plantDetection.score > this.minScore)
   		return sourceItems;
   	},
@@ -282,7 +278,7 @@ export default {
 
   	plantGenera(){
   		let sourceItems = this.matches;
-  		const allGenusSet = new Set(sourceItems.map(i => i.plantDetections[0].genus));
+  		const allGenusSet = new Set(sourceItems.map(i => i.plantDetection.genus));
   		const allGenus = [...allGenusSet];
   		const genusFacets = allGenus.map(g => { 
 			let facetItems = sourceItems.filter(i => i.plantDetection.genus == g);
@@ -298,7 +294,7 @@ export default {
   	viewItems(){
   		let filtered = this.matches;
   		if (this.filter.bee) filtered = this.matches.filter(i => i.genus == this.filter.bee)
-  		if (this.filter.plant) filtered = filtered.filter(i => i.plantDetections[0].genus == this.filter.plant)
+  		if (this.filter.plant) filtered = filtered.filter(i => i.plantDetection.genus == this.filter.plant)
 		return filtered.sort((a,b) => b.eventDate.localeCompare(a.eventDate));
   		//let items = [...filtered].sort((a,b) => a.plantDetections[0].score - b.plantDetections[0].score);
   	  //items.forEach(i => console.log(i.localPath))
@@ -307,7 +303,7 @@ export default {
 
   	plantStats(){
   		if (!this.filter.plant) return {};
-  		let matchingObs = this.matches.filter(p => p.plantDetections[0].genus == this.filter.plant)
+  		let matchingObs = this.matches.filter(p => p.plantDetection.genus == this.filter.plant)
   		let averageNative = matchingObs.map(m => m.nativeStatus).reduce((i,a) => a += i,0) / matchingObs.length;
 
   		let beeRelations = [... new Set( matchingObs.map(o => o.genus))]
@@ -327,9 +323,9 @@ export default {
   		let matchingObs = this.matches.filter(p => p.genus == this.filter.bee)
   		let native = this.filter.bee == "Apis" ? false : true; 
 
-  		let plantRelations = [... new Set( matchingObs.map(o => o.plantDetections[0].genus))]
+  		let plantRelations = [... new Set( matchingObs.map(o => o.plantDetection.genus))]
   		
-  		let plantFacets = plantRelations.map(p => {return {plant:p, count: matchingObs.filter(o => o.plantDetections[0].genus == p).length  }})
+  		let plantFacets = plantRelations.map(p => {return {plant:p, count: matchingObs.filter(o => o.plantDetection.genus == p).length  }})
   		  .sort((a,b) => b.count - a.count)
 
   		let topThreePlants = plantFacets.slice(0,3);
@@ -426,7 +422,7 @@ export default {
   		// from it directly so a single ?obs=<id> link is enough on its own.
   		if (obsItem) {
   			this.filter.bee = obsItem.genus;
-  			this.filter.plant = obsItem.plantDetections[0].genus;
+  			this.filter.plant = obsItem.plantDetection.genus;
   			this.focusedOccurrenceID = obsItem.occurrenceID;
   			return true;
   		}

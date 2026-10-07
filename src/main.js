@@ -2,7 +2,7 @@ import { createApp, nextTick } from 'vue'
 import App from './App.vue'
 import '../assets/main.css' // 
 
-const DATA_URL = '/data/detections-genus-annotated.json'
+const DATA_URL = '/data/detections-ui.json'
 
 const frame = () => new Promise(resolve => requestAnimationFrame(() => resolve()))
 
