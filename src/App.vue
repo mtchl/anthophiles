@@ -282,7 +282,7 @@ export default {
   		const allGenus = [...allGenusSet];
   		const genusFacets = allGenus.map(g => { 
 			let facetItems = sourceItems.filter(i => i.plantDetection.genus == g);
-			let averageNative = facetItems.map(m => m.nativeStatus).reduce((i,a) => a += i,0) / facetItems.length;
+			let averageNative = facetItems.map(m => m.plantDetection.nativeStatus).reduce((i,a) => a += i,0) / facetItems.length;
 			let nativeClass = "introduced";
 			if (averageNative > 0.2) nativeClass = "mixed"
 			if (averageNative > 0.8) nativeClass = "native"

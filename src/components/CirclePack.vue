@@ -156,9 +156,8 @@ export default {
       if (this.facet === 'bee') {
         // opposite is plant
         coocCount = detections.filter(d => 
-          d.plantDetections && 
-          d.plantDetections[0] && 
-          d.plantDetections[0].genus === oppositeFilter
+          d.plantDetection && 
+          d.plantDetection.genus === oppositeFilter
         ).length;
       } else {
         // opposite is bee
